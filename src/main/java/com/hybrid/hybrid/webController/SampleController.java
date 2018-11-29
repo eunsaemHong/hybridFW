@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,12 +26,18 @@ import com.hybrid.hybrid.deviceService.SampleService;
 import com.hybrid.hybrid.webCommon.CommandMap;
 import com.hybrid.hybrid.webDaoImpl.SampleDAOImpl;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
+@Api(value="swag-rest-controller",description="swagtest")
 public class SampleController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SampleController.class);
@@ -83,6 +90,7 @@ public class SampleController {
 	}
 	
 	
+	@ApiOperation(value = "조회")
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ResponseEntity<List<HashMap<String, String>>> listAny(){
 	 
@@ -99,8 +107,13 @@ public class SampleController {
 	    return entity;
 	}
 
+	
+	 @ApiOperation(value = "등록")
+	    @ApiImplicitParams({
+	    	@ApiImplicitParam(name = "key", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
+	    })
 	@RequestMapping(value="/boardInsert", method=RequestMethod.POST)
-	public ResponseEntity<?> insertProject(HashMap<String, String> map) throws Exception {
+	public ResponseEntity<?> insertProject(@RequestParam HashMap<String, String> map) throws Exception {
 		try{
 			System.out.println(map.get("key"));
 	        return new ResponseEntity<>(HttpStatus.OK);
