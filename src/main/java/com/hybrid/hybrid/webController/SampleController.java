@@ -118,8 +118,13 @@ public class SampleController {
 			System.out.println(map.get("key"));
 	        return new ResponseEntity<>(HttpStatus.OK);
 	    }catch(Exception ex){
+	    	
+	    	
+	    	
+	   
 	        String errorMessage;
 	        errorMessage = ex + " <== error";
+	        //System.exit("0");
 	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	    }
 		
