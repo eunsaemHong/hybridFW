@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,10 +109,10 @@ public class SampleController {
 	}
 
 	
-	 @ApiOperation(value = "등록")
-	    @ApiImplicitParams({
-	    	@ApiImplicitParam(name = "key", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-	    })
+	@ApiOperation(value = "등록")
+    @ApiImplicitParams({
+    	@ApiImplicitParam(name = "key", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
+    })
 	@RequestMapping(value="/boardInsert", method=RequestMethod.POST)
 	public ResponseEntity<?> insertProject(@RequestParam HashMap<String, String> map) throws Exception {
 		try{
