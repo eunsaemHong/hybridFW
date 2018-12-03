@@ -4,21 +4,9 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>serviceList</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-<a href="serviceList">db select</a>
-<br>
-<a href="upload">file upload</a>
-
-<br>
-<a href="fileDownload">file download</a>
 
 	<table>
 

@@ -14,6 +14,24 @@
 				DEL_GB = 'N'    
 			ORDER BY IDX DESC
     </select>
+    
+    
+    
+    <select id="serviceList" resultType="com.hybrid.hybrid.webCommon.hybridServiceDTO">
+    SELECT
+			   svcId ,
+			    svcName,
+			    svcDescription ,
+			    svcAssetVer,
+			    svcApkVer,
+			    userId,
+			    createDate,
+			    lastUpdateDate,
+			    createUserId
+			FROM
+			    hybrid_service
+			
+    </select>
 	
 	<!-- <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
 		

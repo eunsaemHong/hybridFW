@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hybrid.hybrid.deviceService.SampleService;
+import com.hybrid.hybrid.webCommon.hybridServiceDTO;
 import com.hybrid.hybrid.webDao.SampleDAO;
 
 @Service
@@ -19,6 +20,11 @@ public class SampleServiceImpl implements SampleService{
 	public List<HashMap<String, String>> listAny() throws Exception {
 		// TODO Auto-generated method stub
 		return sampledao.listAny();
+	}
+	@Override
+	public List<hybridServiceDTO> serviceList() throws Exception {
+		// TODO Auto-generated method stub
+		return sampledao.serviceList();
 	}
 
 }

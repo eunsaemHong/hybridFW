@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.hybrid.hybrid.webCommon.hybridServiceDTO;
 import com.hybrid.hybrid.webDao.SampleDAO;
 
 @Repository
@@ -25,6 +26,13 @@ public class SampleDAOImpl implements SampleDAO{
 	public List<HashMap<String, String>> listAny() throws Exception {
 		// TODO Auto-generated method stub
 		 return session.selectList(namespace+".listAny");
+	}
+
+
+	@Override
+	public List<hybridServiceDTO> serviceList() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".serviceList");
 	}
 
 }

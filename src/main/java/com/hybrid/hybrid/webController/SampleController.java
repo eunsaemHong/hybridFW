@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hybrid.hybrid.deviceService.SampleService;
 import com.hybrid.hybrid.webCommon.CommandMap;
+import com.hybrid.hybrid.webCommon.hybridServiceDTO;
 import com.hybrid.hybrid.webDaoImpl.SampleDAOImpl;
 
 import io.swagger.annotations.Api;
@@ -64,6 +65,24 @@ public class SampleController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/serviceList", method = RequestMethod.GET)
+	public String serviceList(Locale locale, Model model) {
+	
+		List<hybridServiceDTO> serviceList=null;
+		try {
+			serviceList = sampleservice.serviceList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("serviceList", serviceList );
+		
+		return "serviceList";
+	}
+	
+	
+	
 	@RequestMapping(value = "/getList", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public List<String> getData() {
@@ -74,34 +93,15 @@ public class SampleController {
 		return result;
 	}
 
-	@RequestMapping(value = "/getMap", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, String> getMap() {
-		Map<String, String> result = new HashMap<>();
-		result.put("first", "firstValue");
-		result.put("second", "secondValue");
-		result.put("third", "thirdValue");
-		return result;
-	}
-
-	@RequestMapping(value = "/getString", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public String getString() {
-		return "stringValue";
-	}
-	
-	
 	@ApiOperation(value = "조회")
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ResponseEntity<List<HashMap<String, String>>> listAny(){
-	 
 	    ResponseEntity<List<HashMap<String, String>>> entity = null;
 	    try{
 	    	entity = new ResponseEntity<>(sampleservice.listAny(), HttpStatus.OK);
 	    	// entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST );
 	    } catch(Exception e){
 	        e.printStackTrace();
-	        
 	        entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST );
 	    }
 	 
@@ -119,16 +119,11 @@ public class SampleController {
 			System.out.println(map.get("key"));
 	        return new ResponseEntity<>(HttpStatus.OK);
 	    }catch(Exception ex){
-	    	
-	    	
-	    	
-	   
 	        String errorMessage;
 	        errorMessage = ex + " <== error";
 	        //System.exit("0");
 	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	    }
-		
 	}
 	
 	/*

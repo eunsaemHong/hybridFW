@@ -22,36 +22,36 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"/>
 	</beans:bean>
 	
 	
-		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
-		 <!-- setting maximum upload size -->
-		<beans:property name="maxUploadSize" value="10000000000" />
-
-	</beans:bean>
- 
-
-   
-
- 
 	
-	
-	
-	
-
 	<context:component-scan base-package="com.hybrid.hybrid" />
 	
+	<!--class 뷰로 사용하기 위한   BeanNameViewResolver-->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	      	<beans:property name="order" value="0"/>
+	</beans:bean>
 	
-	<beans:bean id="swagger2Config" class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration"></beans:bean>
+    <!--custom view 클래스 -->
+    <beans:bean id="downloadView" class="com.hybrid.hybrid.webCommon.DownloadFile"/>
 
+ 	<!--File up/download  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
+	<!-- setting maximum upload size -->
+	<beans:property name="maxUploadSize" value="10000000000" />
+	</beans:bean>
+ 
 
+	
+	
+	<!--Swagger 적용-->
+	<beans:bean id="swagger2Config" class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration">
+	</beans:bean>
 	<default-servlet-handler />
-	
 	<resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></resources>
-	
 	<resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"></resources>
 
 
