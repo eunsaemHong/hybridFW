@@ -62,7 +62,7 @@ public class SampleController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "home2";
 	}
 	
 	@RequestMapping(value = "/serviceList", method = RequestMethod.GET)
